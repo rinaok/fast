@@ -2761,7 +2761,7 @@ export type SliderOptions = {
 // @public
 export function sliderTemplate(options?: SliderOptions): ElementViewTemplate<FASTSlider>;
 
-// @public (undocumented)
+// @public
 export interface SpanMap {
     // (undocumented)
     end: number;
