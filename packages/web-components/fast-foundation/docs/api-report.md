@@ -2761,7 +2761,7 @@ export type SliderOptions = {
 // @public
 export function sliderTemplate(options?: SliderOptions): ElementViewTemplate<FASTSlider>;
 
-// @beta
+// @public
 export interface SpanMap {
     // (undocumented)
     end: number;
@@ -2991,9 +2991,9 @@ export class VirtualList extends FoundationElement {
     visibleItems: any[];
     // @internal
     visibleItemSpans: SpanMap[];
-    }
+}
 
-// @beta
+// @public
 export type VirtualListAutoUpdateMode = "manual" | "viewport-resize" | "auto";
 
 // @public
