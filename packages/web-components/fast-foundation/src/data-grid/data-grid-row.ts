@@ -163,6 +163,7 @@ export class FASTDataGridRow extends FASTElement {
      *
      * @internal
      */
+    @observable
     public isSelectable: boolean = false;
 
     /**
