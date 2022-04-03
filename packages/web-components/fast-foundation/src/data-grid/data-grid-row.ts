@@ -243,7 +243,7 @@ export class FASTDataGridRow extends FASTElement {
     }
 
     /**
-     * Sets the selected state of the row
+     * Attempst to set the selected state of the row
      *
      * @public
      */
