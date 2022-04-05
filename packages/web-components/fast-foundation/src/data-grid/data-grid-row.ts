@@ -167,7 +167,7 @@ export class FASTDataGridRow extends FASTElement {
     public cellElements: HTMLElement[];
 
     /**
-     * If the row is selected
+     * If the row is selected.
      *
      * @internal
      */
