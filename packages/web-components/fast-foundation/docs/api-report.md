@@ -2982,6 +2982,8 @@ export class VirtualList extends FoundationElement {
     // @internal
     lastRenderedIndex: number;
     listItemContext: object;
+    // (undocumented)
+    listItemLoadMode: VirtualListItemLoadMode;
     orientation: Orientation;
     recycle: boolean;
     protected requestPositionUpdates(): void;
@@ -3016,6 +3018,8 @@ export class VirtualListItem extends FoundationElement {
     itemIndex: number;
     listItemContext: VirtualListItemContext;
     loadContent: boolean;
+    // (undocumented)
+    loadMode: VirtualListItemLoadMode;
     // @internal (undocumented)
     resolveTemplate(): ViewTemplate;
 }
@@ -3024,8 +3028,6 @@ export class VirtualListItem extends FoundationElement {
 export interface VirtualListItemContext {
     // (undocumented)
     listItemContentsTemplate: ViewTemplate;
-    // (undocumented)
-    loadMode?: VirtualListItemLoadMode;
 }
 
 // @public
