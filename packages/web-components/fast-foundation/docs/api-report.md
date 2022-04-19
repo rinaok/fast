@@ -2984,6 +2984,7 @@ export class VirtualList extends FoundationElement {
     listItemContext: object;
     // (undocumented)
     listItemLoadMode: VirtualListItemLoadMode;
+    listItemTemplate: ViewTemplate;
     orientation: Orientation;
     recycle: boolean;
     protected requestPositionUpdates(): void;
@@ -3017,6 +3018,9 @@ export class VirtualListItem extends FoundationElement {
     itemData: object;
     itemIndex: number;
     listItemContext: VirtualListItemContext;
+    // (undocumented)
+    listItemTemplate: ViewTemplate;
+    // @internal
     loadContent: boolean;
     // (undocumented)
     loadMode: VirtualListItemLoadMode;
