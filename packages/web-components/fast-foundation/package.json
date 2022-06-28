@@ -29,6 +29,10 @@
     "./testing": {
       "types": "./dist/dts/testing/exports.d.ts",
       "default": "./dist/esm/testing/exports.js"
+    },
+    "./design-token-2": {
+      "types": "./dist/dts/design-token-2/exports.d.ts",
+      "default": "./dist/esm/design-token-2/exports.js"
     }
   },
   "scripts": {
