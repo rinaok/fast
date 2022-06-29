@@ -259,9 +259,6 @@ export class FASTDataGridRow extends FASTElement {
         this.$emit("rowselectionchanged", detail);
     }
 
-    /**
-     * @internal
-     */
     public handleFocusout(e: FocusEvent): void {
         if (!this.contains(e.target as Element)) {
             this.isActiveRow = false;
@@ -278,6 +275,9 @@ export class FASTDataGridRow extends FASTElement {
         this.$emit("row-focused", this);
     }
 
+    /**
+     * @internal
+     */
     public handleKeydown(e: KeyboardEvent): void {
         if (e.defaultPrevented) {
             return;
@@ -307,7 +307,6 @@ export class FASTDataGridRow extends FASTElement {
                     e.preventDefault();
                 }
                 break;
-
             case keyEnd:
                 if (!e.ctrlKey) {
                     // focus last cell of the row
