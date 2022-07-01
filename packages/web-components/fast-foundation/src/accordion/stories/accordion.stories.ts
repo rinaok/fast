@@ -1,14 +1,14 @@
 import { html } from "@microsoft/fast-element";
 import type { Args, Meta } from "@storybook/html";
 import type { FASTAccordion } from "../accordion.js";
-import { AccordionExpandMode } from "../accordion.js";
+import { AccordionExpandMode } from "../accordion.options.js";
 
 type AccordionArgs = Args & FASTAccordion;
 type AccordionMeta = Meta<AccordionArgs>;
 
 const storyTemplate = html<AccordionArgs>`
     <fast-accordion expand-mode="${x => x.expandmode}">
-        ${x => x?.content}
+        ${x => x.content}
     </fast-accordion>
 `;
 
