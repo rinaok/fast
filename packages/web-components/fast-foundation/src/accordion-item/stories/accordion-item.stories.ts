@@ -6,8 +6,8 @@ type AccordionItemArgs = Args & FASTAccordionItem;
 type AccordionItemMeta = Meta<AccordionItemArgs>;
 
 const storyTemplate = html<AccordionItemArgs>`
-    <fast-accordion-item ?expanded="${x => x?.expanded}">
-        ${x => x?.content}
+    <fast-accordion-item ?expanded="${x => x.expanded}">
+        ${x => x.content}
     </fast-accordion-item>
 `;
 
@@ -19,7 +19,9 @@ export default {
             Accordion Item Content
             <div slot="heading">Accordion Item Heading</div>
         `,
-        expanded: true,
+    },
+    argTypes: {
+        expanded: { control: { type: "boolean" } },
     },
 } as AccordionItemMeta;
 
