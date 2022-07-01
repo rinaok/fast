@@ -1,17 +1,19 @@
 import { html } from "@microsoft/fast-element";
 import type { Args, Meta } from "@storybook/html";
 import type { FASTAnchor as FoundationAnchor } from "../anchor.js";
+import { AnchorTarget } from "../anchor.options.js";
 
 type AnchorArgs = Args & FoundationAnchor;
 type AnchorMeta = Meta<AnchorArgs>;
 
 export const storyTemplate = html<AnchorArgs>`
     <fast-anchor
-        href="${x => x?.href}"
-        hreflang="${x => x?.hreflang}"
-        download="${x => x?.download}"
+        referrerpolicy="${x => x.referrerpolicy}"
+        href="${x => x.href}"
+        hreflang="${x => x.hreflang}"
+        download="${x => x.download}"
     >
-        ${x => x?.content}
+        ${x => x.content}
     </fast-anchor>
 `;
 
@@ -20,7 +22,7 @@ export default {
     includeStories: ["Anchor"],
     args: {
         content: "Anchor",
-        href: "#",
+        href: "https://www.fast.design/",
     },
     argTypes: {
         download: { control: { type: "text" } },
@@ -30,7 +32,7 @@ export default {
         referrerpolicy: { control: { type: "text" } },
         rel: { control: { type: "text" } },
         target: {
-            options: ["_self", "_blank", "_parent", "_top"],
+            options: Object.values(AnchorTarget),
             control: { type: "select" },
         },
         type: { control: { type: "text" } },
