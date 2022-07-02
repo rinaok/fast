@@ -1,11 +1,11 @@
 import { attr, FASTElement, observable, Updates } from "@microsoft/fast-element";
 import { Direction, keyEscape } from "@microsoft/fast-web-utilities";
+import type { FASTAnchoredRegion } from "../anchored-region/anchored-region.js";
 import type {
     AutoUpdateMode,
     AxisPositioningMode,
     AxisScalingMode,
-    FASTAnchoredRegion,
-} from "../anchored-region/anchored-region.js";
+} from "../anchored-region/anchored-region.options.js";
 import { getDirection } from "../utilities/direction.js";
 import { TooltipPosition } from "./tooltip.options.js";
 
