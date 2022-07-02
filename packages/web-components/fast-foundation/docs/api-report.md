@@ -17,7 +17,6 @@ import { ElementViewTemplate } from '@microsoft/fast-element';
 import { FASTElement } from '@microsoft/fast-element';
 import { FASTElementDefinition } from '@microsoft/fast-element';
 import { Orientation } from '@microsoft/fast-web-utilities';
-import type { PartialFASTElementDefinition } from '@microsoft/fast-element';
 import { Splice } from '@microsoft/fast-element';
 import { SyntheticViewTemplate } from '@microsoft/fast-element';
 import { ViewTemplate } from '@microsoft/fast-element';
@@ -2202,6 +2201,91 @@ export class FASTTreeView extends FASTElement {
 }
 
 // @public
+export class FASTVirtualList extends FASTElement {
+    autoResizeItems: boolean;
+    autoUpdateMode: VirtualListAutoUpdateMode;
+    // @internal (undocumented)
+    connectedCallback(): void;
+    // @internal
+    containerElement: HTMLDivElement;
+    // @internal
+    defaultHorizontalItemTemplate: ViewTemplate;
+    // @internal
+    defaultVerticalItemTemplate: ViewTemplate;
+    // @internal (undocumented)
+    disconnectedCallback(): void;
+    // @internal
+    endSpacerSize: number;
+    // @internal
+    firstRenderedIndex: number;
+    getItemSizeMap: (itemIndex: number) => SizeMap | null;
+    // @internal
+    handleChange(source: any, splices: Splice[]): void;
+    // @internal (undocumented)
+    handleListItemConnected(e: Event): void;
+    // @internal (undocumented)
+    handleListItemDisconnected(e: Event): void;
+    // Warning: (ae-forgotten-export) The symbol "IdleCallbackQueue" needs to be exported by the entry point index.d.ts
+    //
+    // @internal
+    idleCallbackQueue: IdleCallbackQueue;
+    idleCallbackTimeout: number;
+    idleLoadMode: VirtualListIdleLoadMode;
+    items: object[];
+    itemSize: number;
+    itemTemplate: ViewTemplate;
+    // @internal
+    lastRenderedIndex: number;
+    listItemContentsTemplate: ViewTemplate;
+    listItemContext: object;
+    listItemLoadMode: VirtualListItemLoadMode;
+    orientation: Orientation;
+    recycle: boolean;
+    protected requestPositionUpdates(): void;
+    protected reset(): void;
+    sizemap: SizeMap[];
+    // @internal
+    startSpacerSize: number;
+    // @internal
+    totalListSize: number;
+    update(): void;
+    viewport: string;
+    viewportBuffer: number;
+    viewportElement: HTMLElement;
+    virtualizationEnabled: boolean;
+    // @internal
+    visibleItemMap: SizeMap[];
+    // @internal
+    visibleItems: any[];
+}
+
+// @public
+export class FASTVirtualListItem extends FASTElement {
+    // @internal (undocumented)
+    connectedCallback(): void;
+    // @internal (undocumented)
+    disconnectedCallback(): void;
+    // @internal
+    idleCallbackQueue: IdleCallbackQueue;
+    // @internal
+    itemData: object;
+    // @internal
+    itemIndex: number;
+    // @internal
+    itemSizeMap: SizeMap;
+    // @internal
+    listItemContentsTemplate: ViewTemplate;
+    // @internal
+    listItemContext: object;
+    // @internal
+    loadContent: boolean;
+    // @internal
+    loadMode: VirtualListItemLoadMode;
+    // @internal
+    sizeMap: SizeMap[];
+}
+
+// @public
 export const FlipperDirection: {
     readonly next: "next";
     readonly previous: "previous";
@@ -2729,14 +2813,6 @@ export interface SizeMap {
 }
 
 // @public
-export class Skeleton extends FoundationElement {
-    fill: string;
-    pattern: string;
-    shape: SkeletonShape;
-    shimmer: boolean;
-}
-
-// @public
 export const SkeletonShape: {
     readonly rect: "rect";
     readonly circle: "circle";
@@ -2940,104 +3016,24 @@ export function validateKey(key: any): void;
 export type VerticalPosition = "top" | "bottom" | "center" | "unset";
 
 // @public
-export class VirtualList extends FoundationElement {
-    autoResizeItems: boolean;
-    autoUpdateMode: VirtualListAutoUpdateMode;
-    // @internal (undocumented)
-    connectedCallback(): void;
-    // @internal
-    containerElement: HTMLDivElement;
-    // @internal
-    defaultHorizontalItemTemplate: ViewTemplate;
-    // @internal
-    defaultVerticalItemTemplate: ViewTemplate;
-    // @internal (undocumented)
-    disconnectedCallback(): void;
-    // @internal
-    endSpacerSize: number;
-    // @internal
-    firstRenderedIndex: number;
-    getItemSizeMap: (itemIndex: number) => SizeMap | null;
-    // @internal
-    handleChange(source: any, splices: Splice[]): void;
-    // @internal (undocumented)
-    handleListItemConnected(e: Event): void;
-    // @internal (undocumented)
-    handleListItemDisconnected(e: Event): void;
-    // Warning: (ae-forgotten-export) The symbol "IdleCallbackQueue" needs to be exported by the entry point index.d.ts
-    //
-    // @internal
-    idleCallbackQueue: IdleCallbackQueue;
-    idleCallbackTimeout: number;
-    idleLoadMode: VirtualListIdleLoadMode;
-    items: object[];
-    itemSize: number;
-    itemTemplate: ViewTemplate;
-    // @internal
-    lastRenderedIndex: number;
-    listItemContentsTemplate: ViewTemplate;
-    listItemContext: object;
-    listItemLoadMode: VirtualListItemLoadMode;
-    orientation: Orientation;
-    recycle: boolean;
-    protected requestPositionUpdates(): void;
-    protected reset(): void;
-    sizemap: SizeMap[];
-    // @internal
-    startSpacerSize: number;
-    // @internal
-    totalListSize: number;
-    update(): void;
-    viewport: string;
-    viewportBuffer: number;
-    viewportElement: HTMLElement;
-    virtualizationEnabled: boolean;
-    // @internal
-    visibleItemMap: SizeMap[];
-    // @internal
-    visibleItems: any[];
-}
-
-// @public
 export type VirtualListAutoUpdateMode = "manual" | "viewport" | "auto" | "self";
 
 // @public
 export type VirtualListIdleLoadMode = "auto" | "enabled" | "suspended";
 
 // @public
-export class VirtualListItem extends FoundationElement {
-    // @internal (undocumented)
-    connectedCallback(): void;
-    // @internal (undocumented)
-    disconnectedCallback(): void;
-    // @internal
-    idleCallbackQueue: IdleCallbackQueue;
-    // @internal
-    itemData: object;
-    // @internal
-    itemIndex: number;
-    // @internal
-    itemSizeMap: SizeMap;
-    // @internal
-    listItemContentsTemplate: ViewTemplate;
-    // @internal
-    listItemContext: object;
-    // @internal
-    loadContent: boolean;
-    // @internal
-    loadMode: VirtualListItemLoadMode;
-    // @internal
-    sizeMap: SizeMap[];
-}
-
-// @public
 export type VirtualListItemLoadMode = "immediate" | "manual" | "idle";
 
 // @public
-export const virtualListItemTemplate: FoundationElementTemplate<ViewTemplate<VirtualListItem>>;
+export function virtualListItemTemplate(): ElementViewTemplate<FASTVirtualListItem>;
 
 // @public
-export const virtualListTemplate: FoundationElementTemplate<ViewTemplate<VirtualList>>;
+export type VirtualListOptions = {
+    virtualListItem: TemplateElementDependency;
+};
+
+// @public
+export function virtualListTemplate(options: VirtualListOptions): ElementViewTemplate<FASTVirtualList>;
 
 // @public
 export const WeekdayFormat: {
@@ -3085,6 +3081,7 @@ export type YearFormat = typeof YearFormat[keyof typeof YearFormat];
 // dist/dts/picker/picker.template.d.ts:13:5 - (ae-incompatible-release-tags) The symbol "pickerListItem" is marked as @public, but its signature references "TemplateElementDependency" which is marked as @beta
 // dist/dts/picker/picker.template.d.ts:14:5 - (ae-incompatible-release-tags) The symbol "progressRing" is marked as @public, but its signature references "TemplateElementDependency" which is marked as @beta
 // dist/dts/tooltip/tooltip.template.d.ts:9:5 - (ae-incompatible-release-tags) The symbol "anchoredRegion" is marked as @public, but its signature references "TemplateElementDependency" which is marked as @beta
+// dist/dts/virtual-list/virtual-list.template.d.ts:9:5 - (ae-incompatible-release-tags) The symbol "virtualListItem" is marked as @public, but its signature references "TemplateElementDependency" which is marked as @beta
 
 // (No @packageDocumentation comment for this package)
 
