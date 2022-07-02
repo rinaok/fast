@@ -42,12 +42,8 @@ const storyTemplate = html<AnchoredRegionArgs>`
 export default {
     title: "Anchored Region",
     args: {
-        verticalPositioningMode: "locktodefault",
-        horizontalPositioningMode: "locktodefault",
-        verticalDefaultPosition: "top",
-        horizontalDefaultPosition: "left",
         content: html`
-            <div style="background: green">
+            <div id="content" style="background: green">
                 anchored-region
             </div>
         `,
@@ -91,4 +87,12 @@ export const AnchoredRegion = (args: AnchoredRegionArgs) => {
     const storyFragment = new DocumentFragment();
     storyTemplate.render(args, storyFragment);
     return storyFragment.firstElementChild;
+};
+
+export const LockToDefault = AnchoredRegion.bind({});
+LockToDefault.args = {
+    horizontalDefaultPosition: "left",
+    horizontalPositioningMode: "locktodefault",
+    verticalDefaultPosition: "top",
+    verticalPositioningMode: "locktodefault",
 };
