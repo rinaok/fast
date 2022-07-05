@@ -23,7 +23,6 @@ export {
     DerivedDesignTokenValue,
     DesignTokenValue,
     DesignTokenConfiguration,
-
 } from "./design-token/interfaces.js";
 export * from "./di/index.js";
 export * from "./dialog/index.js";
