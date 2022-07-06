@@ -17,7 +17,7 @@ export default {
         content: html`
             <fast-breadcrumb-item href="#">Breadcrumb Item 1</fast-breadcrumb-item>
             <fast-breadcrumb-item href="#">Breadcrumb Item 2</fast-breadcrumb-item>
-            <fast-breadcrumb-item>Breadcrumb Item 3</fast-breadcrumb-item>
+            <fast-breadcrumb-item href="#">Breadcrumb Item 3</fast-breadcrumb-item>
         `,
     },
 } as BreadcrumbStoryMeta;
@@ -39,7 +39,7 @@ BreadcrumbsWithSeparators.args = {
             Breadcrumb Item 2
             <svg slot="separator"><use href="#test-icon" /></svg>
         </fast-breadcrumb-item>
-        <fast-breadcrumb-item>
+        <fast-breadcrumb-item href="#">
             Breadcrumb Item 3
             <svg slot="separator"><use href="#test-icon" /></svg>
         </fast-breadcrumb-item>
