@@ -17,6 +17,7 @@ import { ElementViewTemplate } from '@microsoft/fast-element';
 import { FASTElement } from '@microsoft/fast-element';
 import { FASTElementDefinition } from '@microsoft/fast-element';
 import { Orientation } from '@microsoft/fast-web-utilities';
+import { RepeatBehavior } from '@microsoft/fast-element';
 import { Splice } from '@microsoft/fast-element';
 import { SyntheticViewTemplate } from '@microsoft/fast-element';
 import { ViewTemplate } from '@microsoft/fast-element';
@@ -2200,8 +2201,10 @@ export class FASTTreeView extends FASTElement {
     treeView: HTMLElement;
 }
 
+// Warning: (ae-forgotten-export) The symbol "FASTDataList" needs to be exported by the entry point index.d.ts
+//
 // @public
-export class FASTVirtualList extends FASTElement {
+export class FASTVirtualList extends FASTDataList {
     autoResizeItems: boolean;
     autoUpdateMode: VirtualListAutoUpdateMode;
     // @internal (undocumented)
@@ -2225,22 +2228,13 @@ export class FASTVirtualList extends FASTElement {
     handleListItemConnected(e: Event): void;
     // @internal (undocumented)
     handleListItemDisconnected(e: Event): void;
-    // Warning: (ae-forgotten-export) The symbol "IdleCallbackQueue" needs to be exported by the entry point index.d.ts
-    //
-    // @internal
-    idleCallbackQueue: IdleCallbackQueue;
-    idleCallbackTimeout: number;
-    idleLoadMode: VirtualListIdleLoadMode;
-    items: object[];
+    protected itemsChanged(): void;
     itemSize: number;
-    itemTemplate: ViewTemplate;
     // @internal
     lastRenderedIndex: number;
-    listItemContentsTemplate: ViewTemplate;
-    listItemContext: object;
-    listItemLoadMode: VirtualListItemLoadMode;
     orientation: Orientation;
-    recycle: boolean;
+    // @internal
+    renderedItemMap: SizeMap[];
     protected requestPositionUpdates(): void;
     protected reset(): void;
     sizemap: SizeMap[];
@@ -2253,34 +2247,16 @@ export class FASTVirtualList extends FASTElement {
     viewportBuffer: number;
     viewportElement: HTMLElement;
     virtualizationEnabled: boolean;
-    // @internal
-    visibleItemMap: SizeMap[];
-    // @internal
-    visibleItems: any[];
 }
 
+// Warning: (ae-forgotten-export) The symbol "FASTDataListItem" needs to be exported by the entry point index.d.ts
+//
 // @public
-export class FASTVirtualListItem extends FASTElement {
-    // @internal (undocumented)
-    connectedCallback(): void;
-    // @internal (undocumented)
-    disconnectedCallback(): void;
-    // @internal
-    idleCallbackQueue: IdleCallbackQueue;
-    // @internal
-    itemData: object;
-    // @internal
-    itemIndex: number;
+export class FASTVirtualListItem extends FASTDataListItem {
     // @internal
     itemSizeMap: SizeMap;
     // @internal
     listItemContentsTemplate: ViewTemplate;
-    // @internal
-    listItemContext: object;
-    // @internal
-    loadContent: boolean;
-    // @internal
-    loadMode: VirtualListItemLoadMode;
     // @internal
     sizeMap: SizeMap[];
 }
@@ -3017,12 +2993,6 @@ export type VerticalPosition = "top" | "bottom" | "center" | "unset";
 
 // @public
 export type VirtualListAutoUpdateMode = "manual" | "viewport" | "auto" | "self";
-
-// @public
-export type VirtualListIdleLoadMode = "auto" | "enabled" | "suspended";
-
-// @public
-export type VirtualListItemLoadMode = "immediate" | "manual" | "idle";
 
 // @public
 export function virtualListItemTemplate(): ElementViewTemplate<FASTVirtualListItem>;
