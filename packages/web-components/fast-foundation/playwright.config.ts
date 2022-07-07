@@ -1,10 +1,29 @@
 import type { PlaywrightTestConfig } from "@playwright/test";
+import { devices } from "@playwright/test";
 
 const config: PlaywrightTestConfig = {
+    fullyParallel: true,
     testMatch: /.*\.pw\.spec\.ts$/,
     use: {
-        baseURL: "http://localhost:6006",
+        viewport: {
+            height: 1280,
+            width: 720,
+        },
     },
+    projects: [
+        {
+            name: "chromium",
+            use: { ...devices["Desktop Chrome"] },
+        },
+        {
+            name: "firefox",
+            use: { ...devices["Desktop Firefox"] },
+        },
+        {
+            name: "webkit",
+            use: { ...devices["Desktop Safari"] },
+        },
+    ],
     reporter: "list",
 };
 
