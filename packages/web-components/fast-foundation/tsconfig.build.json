@@ -4,5 +4,5 @@
         "baseUrl": "",
         "moduleResolution": "Node16",
     },
-    "exclude": ["**/stories/**"]
+    "exclude": ["**/stories/**", "**/*.spec.ts"]
 }
