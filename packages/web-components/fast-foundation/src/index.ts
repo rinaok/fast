@@ -12,7 +12,6 @@ export * from "./card/index.js";
 export * from "./checkbox/index.js";
 export * from "./combobox/index.js";
 export * from "./data-grid/index.js";
-export * from "./design-system/index.js";
 export {
     DesignToken,
     CSSDesignToken,
@@ -25,14 +24,12 @@ export {
     DesignTokenValue,
     DesignTokenConfiguration,
 } from "./design-token/interfaces.js";
-export * from "./di/index.js";
 export * from "./dialog/index.js";
 export { reflectAttributes } from "./directives/reflect-attributes.js";
 export * from "./disclosure/index.js";
 export * from "./divider/index.js";
 export * from "./flipper/index.js";
 export * from "./form-associated/index.js";
-export * from "./foundation-element/index.js";
 export * from "./listbox-option/index.js";
 export * from "./listbox/index.js";
 export * from "./picker/index.js";

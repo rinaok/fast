@@ -53,7 +53,7 @@ export const Aspect: Readonly<{
     readonly content: 4;
     readonly tokenList: 5;
     readonly event: 6;
-    readonly assign: (directive: Aspected, value: string) => void;
+    readonly assign: (directive: Aspected, value?: string) => void;
 }>;
 
 // @public
@@ -209,6 +209,19 @@ export type Constructable<T = {}> = {
 export type ConstructibleStyleStrategy = {
     new (styles: (string | CSSStyleSheet)[]): StyleStrategy;
 };
+
+// @public
+export interface ContentTemplate {
+    create(): ContentView;
+}
+
+// @public
+export interface ContentView {
+    bind(source: any, context: ExecutionContext): void;
+    insertBefore(node: Node): void;
+    remove(): void;
+    unbind(): void;
+}
 
 // @public
 export class Controller<TElement extends HTMLElement = HTMLElement> extends PropertyChangeNotifier {
@@ -386,15 +399,15 @@ export const FASTElement: (new () => HTMLElement & FASTElement) & {
         new (): HTMLElement;
         prototype: HTMLElement;
     }>(BaseType: TBase): new () => InstanceType<TBase> & FASTElement;
-    define<TType extends Constructable<HTMLElement>>(type: TType, nameOrDef?: string | PartialFASTElementDefinition): TType;
-    metadata<TType_1 extends Constructable<HTMLElement> = Constructable<HTMLElement>>(type: TType_1, nameOrDef?: string | PartialFASTElementDefinition): FASTElementDefinition<TType_1>;
+    define: typeof define;
+    compose: typeof compose;
 };
 
 // @public
 export class FASTElementDefinition<TType extends Constructable<HTMLElement> = Constructable<HTMLElement>> {
-    constructor(type: TType, nameOrConfig?: PartialFASTElementDefinition | string);
     readonly attributeLookup: Record<string, AttributeDefinition>;
     readonly attributes: ReadonlyArray<AttributeDefinition>;
+    static compose<TType extends Constructable<HTMLElement> = Constructable<HTMLElement>>(type: TType, nameOrDef?: string | PartialFASTElementDefinition): FASTElementDefinition<TType>;
     define(registry?: CustomElementRegistry): this;
     readonly elementOptions?: ElementDefinitionOptions;
     static readonly getByType: (key: Function) => FASTElementDefinition<Constructable<HTMLElement>> | undefined;
@@ -606,11 +619,11 @@ export class RefDirective extends StatelessAttachedAttributeDirective<string> {
 }
 
 // @public
-export function repeat<TSource = any, TArray extends ReadonlyArray<any> = ReadonlyArray<any>>(itemsBinding: Binding<TSource, TArray, ExecutionContext<TSource>>, templateOrTemplateBinding: ViewTemplate | Binding<TSource, ViewTemplate>, options?: RepeatOptions): CaptureType<TSource>;
+export function repeat<TSource = any, TArray extends ReadonlyArray<any> = ReadonlyArray<any>>(items: Binding<TSource, TArray, ExecutionContext<TSource>> | ReadonlyArray<any>, templateOrTemplateBinding: ViewTemplate | Binding<TSource, ViewTemplate>, options?: RepeatOptions): CaptureType<TSource>;
 
 // @public
 export class RepeatBehavior<TSource = any> implements Behavior, Subscriber {
-    constructor(location: Node, itemsBinding: Binding<TSource, any[]>, isItemsBindingVolatile: boolean, templateBinding: Binding<TSource, SyntheticViewTemplate>, isTemplateBindingVolatile: boolean, options: RepeatOptions);
+    constructor(location: Node, dataBinding: Binding<TSource, any[]>, isItemsBindingVolatile: boolean, templateBinding: Binding<TSource, SyntheticViewTemplate>, isTemplateBindingVolatile: boolean, options: RepeatOptions);
     bind(source: TSource, context: ExecutionContext): void;
     handleChange(source: any, args: Splice[]): void;
     unbind(): void;
@@ -618,12 +631,12 @@ export class RepeatBehavior<TSource = any> implements Behavior, Subscriber {
 
 // @public
 export class RepeatDirective<TSource = any> implements HTMLDirective, ViewBehaviorFactory {
-    constructor(itemsBinding: Binding, templateBinding: Binding<TSource, SyntheticViewTemplate>, options: RepeatOptions);
+    constructor(dataBinding: Binding, templateBinding: Binding<TSource, SyntheticViewTemplate>, options: RepeatOptions);
     createBehavior(targets: ViewBehaviorTargets): RepeatBehavior<TSource>;
     createHTML(add: AddViewBehaviorFactory): string;
-    id: string;
     // (undocumented)
-    readonly itemsBinding: Binding;
+    readonly dataBinding: Binding;
+    id: string;
     nodeId: string;
     // (undocumented)
     readonly options: RepeatOptions;
@@ -865,7 +878,12 @@ export class ViewTemplate<TSource = any, TParent = any> implements ElementViewTe
 export function volatile(target: {}, name: string | Accessor, descriptor: PropertyDescriptor): PropertyDescriptor;
 
 // @public
-export function when<TSource = any, TReturn = any>(binding: Binding<TSource, TReturn>, templateOrTemplateBinding: SyntheticViewTemplate | Binding<TSource, SyntheticViewTemplate>): CaptureType<TSource>;
+export function when<TSource = any, TReturn = any>(condition: Binding<TSource, TReturn> | boolean, templateOrTemplateBinding: SyntheticViewTemplate | Binding<TSource, SyntheticViewTemplate>): CaptureType<TSource>;
+
+// Warnings were encountered during analysis:
+//
+// dist/dts/components/fast-element.d.ts:73:5 - (ae-forgotten-export) The symbol "define" needs to be exported by the entry point index.d.ts
+// dist/dts/components/fast-element.d.ts:78:5 - (ae-forgotten-export) The symbol "compose" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

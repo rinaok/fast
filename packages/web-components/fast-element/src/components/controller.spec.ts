@@ -4,7 +4,8 @@ import type { Behavior } from "../observation/behavior.js";
 import { Observable } from "../observation/observable.js";
 import { css } from "../styles/css.js";
 import { html } from "../templating/template.js";
-import { toHTML, uniqueElementName } from "../__test__/helpers.js";
+import { uniqueElementName } from "../testing/fixture.js";
+import { toHTML } from "../__test__/helpers.js";
 import { Controller } from "./controller.js";
 import { FASTElementDefinition, PartialFASTElementDefinition } from "./fast-definitions.js";
 import { FASTElement } from "./fast-element.js";
@@ -22,7 +23,7 @@ describe("The Controller", () => {
         BaseClass = FASTElement
     ) {
         const name = uniqueElementName();
-        const definition = new FASTElementDefinition(
+        const definition = FASTElementDefinition.compose(
             class ControllerTest extends BaseClass {
                 static definition = { ...config, name };
             }
@@ -522,7 +523,7 @@ describe("The Controller", () => {
 
             document.body.append(element);
 
-            new FASTElementDefinition(
+            FASTElementDefinition.compose(
                 class TestElement extends FASTElement {
                     static definition = {
                         name,

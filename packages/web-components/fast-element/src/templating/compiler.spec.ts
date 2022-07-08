@@ -3,13 +3,14 @@ import { customElement, FASTElement } from "../components/fast-element.js";
 import { Markup } from './markup.js';
 import { ExecutionContext } from "../observation/observable.js";
 import { css } from "../styles/css.js";
-import { toHTML, uniqueElementName } from "../__test__/helpers.js";
+import { toHTML } from "../__test__/helpers.js";
 import { bind, HTMLBindingDirective } from "./binding.js";
 import { Compiler } from "./compiler.js";
-import type { HTMLDirective, ViewBehaviorFactory } from "./html-directive.js";
+import { Aspect, HTMLDirective, ViewBehaviorFactory } from "./html-directive.js";
 import { html } from "./template.js";
 import type { StyleTarget } from "../interfaces.js";
 import { ElementStyles } from "../index.debug.js";
+import { uniqueElementName } from "../testing/fixture.js";
 
 /**
  * Used to satisfy TS by exposing some internal properties of the
@@ -195,6 +196,28 @@ describe("The template compiler", () => {
                     }
                 }
             });
+        });
+
+        it("fixes content that looks like an attribute to have the correct aspect type", () => {
+            const factories: Record<string, ViewBehaviorFactory> = Object.create(null);
+            const ids: string[] = [];
+            let nextId = -1;
+            const add = (factory: ViewBehaviorFactory): string => {
+                const id = `${++nextId}`;
+                ids.push(id);
+                factory.id = id;
+                factories[id] = factory;
+                return id;
+            };
+
+            const binding = bind(x => x) as HTMLBindingDirective;
+            Aspect.assign(binding, "a"); // mimic the html function, which will think it's an attribute
+            const html = `a=${binding.createHTML(add)}`;
+
+            const result = Compiler.compile(html, factories) as any as CompilationResultInternals;
+            const bindingFactory = result.factories[0] as HTMLBindingDirective;
+
+            expect(bindingFactory.aspectType).equal(Aspect.content);
         });
     });
 
