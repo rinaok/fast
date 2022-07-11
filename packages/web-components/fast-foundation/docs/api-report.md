@@ -59,13 +59,33 @@ export interface AnchoredRegionConfig {
 }
 
 // @public
-export type AnchoredRegionPositionLabel = "start" | "insetStart" | "insetEnd" | "end" | "center";
+export const AnchoredRegionPositionLabel: {
+    readonly start: "start";
+    readonly insetStart: "insetStart";
+    readonly insetEnd: "insetEnd";
+    readonly end: "end";
+    readonly center: "center";
+};
+
+// @public
+export type AnchoredRegionPositionLabel = typeof AnchoredRegionPositionLabel[keyof typeof AnchoredRegionPositionLabel];
 
 // @public
 export function anchoredRegionTemplate(): ElementViewTemplate<FASTAnchoredRegion>;
 
 // @public
 export type AnchorOptions = StartEndOptions;
+
+// @public
+export const AnchorTarget: {
+    readonly _self: "_self";
+    readonly _blank: "_blank";
+    readonly _parent: "_parent";
+    readonly _top: "_top";
+};
+
+// @public
+export type AnchorTarget = typeof AnchorTarget[keyof typeof AnchorTarget];
 
 // @public
 export function anchorTemplate(options?: AnchorOptions): ElementViewTemplate<FASTAnchor>;
@@ -102,7 +122,7 @@ export const AutoUpdateMode: {
     readonly auto: "auto";
 };
 
-// @public (undocumented)
+// @public
 export type AutoUpdateMode = typeof AutoUpdateMode[keyof typeof AutoUpdateMode];
 
 // @public
@@ -114,10 +134,24 @@ export type AvatarOptions = {
 export function avatarTemplate(options?: AvatarOptions): ElementViewTemplate<FASTAvatar>;
 
 // @public
-export type AxisPositioningMode = "uncontrolled" | "locktodefault" | "dynamic";
+export const AxisPositioningMode: {
+    readonly uncontrolled: "uncontrolled";
+    readonly locktodefault: "locktodefault";
+    readonly dynamic: "dynamic";
+};
 
 // @public
-export type AxisScalingMode = "anchor" | "fill" | "content";
+export type AxisPositioningMode = typeof AxisPositioningMode[keyof typeof AxisPositioningMode];
+
+// @public
+export const AxisScalingMode: {
+    readonly anchor: "anchor";
+    readonly content: "content";
+    readonly fill: "fill";
+};
+
+// @public
+export type AxisScalingMode = typeof AxisScalingMode[keyof typeof AxisScalingMode];
 
 // @public
 export function badgeTemplate(): ElementViewTemplate<FASTBadge>;
@@ -511,6 +545,16 @@ export type DesignTokenValue<T> = StaticDesignTokenValue<T> | DerivedDesignToken
 // @public
 export function dialogTemplate(): ElementViewTemplate<FASTDialog>;
 
+// Warning: (ae-internal-missing-underscore) The name "Dimension" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal (undocumented)
+export interface Dimension {
+    // (undocumented)
+    height: number;
+    // (undocumented)
+    width: number;
+}
+
 // @public @deprecated
 export const disabledCursor = "not-allowed";
 
@@ -583,7 +627,7 @@ export class FASTAnchor extends FASTElement {
     ping: string;
     referrerpolicy: string;
     rel: string;
-    target: "_self" | "_blank" | "_parent" | "_top";
+    target: AnchorTarget;
     type: string;
 }
 
@@ -694,10 +738,12 @@ export class FASTBaseProgress extends FASTElement {
 
 // @public
 export class FASTBreadcrumb extends FASTElement {
+    // (undocumented)
+    static slottedBreadcrumbItemFilter: (n: HTMLElement) => boolean;
     // @internal (undocumented)
     slottedBreadcrumbItems: HTMLElement[];
     // (undocumented)
-    protected slottedBreadcrumbItemsChanged(): void;
+    protected slottedBreadcrumbItemsChanged(prev: Element[] | undefined, next: Element[] | undefined): void;
 }
 
 // Warning: (ae-different-release-tags) This symbol has another declaration with a different release tag
@@ -2206,7 +2252,17 @@ export const getDirection: (rootNode: HTMLElement) => Direction;
 export const hidden = ":host([hidden]){display:none}";
 
 // @public
-export type HorizontalPosition = "start" | "end" | "left" | "right" | "center" | "unset";
+export const HorizontalPosition: {
+    readonly start: "start";
+    readonly end: "end";
+    readonly left: "left";
+    readonly right: "right";
+    readonly center: "center";
+    readonly unset: "unset";
+};
+
+// @public
+export type HorizontalPosition = typeof HorizontalPosition[keyof typeof HorizontalPosition];
 
 // @public
 export type HorizontalScrollOptions = StartEndOptions & {
@@ -2224,6 +2280,9 @@ export type HorizontalScrollView = "default" | "mobile";
 //
 // @internal
 export function interactiveCalendarGridTemplate(options: CalendarOptions, todayString: string): ViewTemplate<FASTCalendar>;
+
+// @public
+export function isBreadcrumbItem(element: Element): element is FASTBreadcrumbItem;
 
 // @public
 export function isListboxOption(el: Element): el is FASTListboxOption;
@@ -2628,7 +2687,15 @@ export function treeItemTemplate(options?: TreeItemOptions): ElementViewTemplate
 export function treeViewTemplate(): ElementViewTemplate<FASTTreeView>;
 
 // @public
-export type VerticalPosition = "top" | "bottom" | "center" | "unset";
+export const VerticalPosition: {
+    readonly top: "top";
+    readonly bottom: "bottom";
+    readonly center: "center";
+    readonly unset: "unset";
+};
+
+// @public
+export type VerticalPosition = typeof VerticalPosition[keyof typeof VerticalPosition];
 
 // @public
 export const WeekdayFormat: {

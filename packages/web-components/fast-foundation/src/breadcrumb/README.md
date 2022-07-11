@@ -108,11 +108,17 @@ This component is built with the expectation that focus is delegated to the anch
 | ------------- | ------ | ----------------------- |
 | `FASTElement` |        | @microsoft/fast-element |
 
+#### Static Fields
+
+| Name                          | Privacy | Type | Default | Description | Inherited From |
+| ----------------------------- | ------- | ---- | ------- | ----------- | -------------- |
+| `slottedBreadcrumbItemFilter` | public  |      |         |             |                |
+
 #### Methods
 
-| Name                            | Privacy   | Description | Parameters | Return | Inherited From |
-| ------------------------------- | --------- | ----------- | ---------- | ------ | -------------- |
-| `slottedBreadcrumbItemsChanged` | protected |             |            |        |                |
+| Name                            | Privacy   | Description | Parameters                                                   | Return | Inherited From |
+| ------------------------------- | --------- | ----------- | ------------------------------------------------------------ | ------ | -------------- |
+| `slottedBreadcrumbItemsChanged` | protected |             | `prev: Element[] or undefined, next: Element[] or undefined` |        |                |
 
 #### CSS Parts
 
@@ -140,17 +146,17 @@ This component is built with the expectation that focus is delegated to the anch
 
 #### Fields
 
-| Name             | Privacy | Type                                         | Default | Description                                                                                                                                                               | Inherited From |
-| ---------------- | ------- | -------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
-| `download`       | public  | `string`                                     |         | Prompts the user to save the linked URL. See [`<a>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) for more information.          | FASTAnchor     |
-| `href`           | public  | `string`                                     |         | The URL the hyperlink references. See [`<a>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) for more information.                 | FASTAnchor     |
-| `hreflang`       | public  | `string`                                     |         | Hints at the language of the referenced resource. See [`<a>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) for more information. | FASTAnchor     |
-| `ping`           | public  | `string`                                     |         | See [`<a>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) for more information.                                                   | FASTAnchor     |
-| `referrerpolicy` | public  | `string`                                     |         | See [`<a>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) for more information.                                                   | FASTAnchor     |
-| `rel`            | public  | `string`                                     |         | See [`<a>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) for more information.                                                   | FASTAnchor     |
-| `target`         | public  | `"_self" or "_blank" or "_parent" or "_top"` |         | See [`<a>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) for more information.                                                   | FASTAnchor     |
-| `type`           | public  | `string`                                     |         | See [`<a>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) for more information.                                                   | FASTAnchor     |
-| `control`        | public  | `HTMLAnchorElement`                          |         | References the root element                                                                                                                                               | FASTAnchor     |
+| Name             | Privacy | Type                | Default | Description                                                                                                                                                               | Inherited From |
+| ---------------- | ------- | ------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| `download`       | public  | `string`            |         | Prompts the user to save the linked URL. See [`<a>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) for more information.          | FASTAnchor     |
+| `href`           | public  | `string`            |         | The URL the hyperlink references. See [`<a>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) for more information.                 | FASTAnchor     |
+| `hreflang`       | public  | `string`            |         | Hints at the language of the referenced resource. See [`<a>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) for more information. | FASTAnchor     |
+| `ping`           | public  | `string`            |         | See [`<a>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) for more information.                                                   | FASTAnchor     |
+| `referrerpolicy` | public  | `string`            |         | See [`<a>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) for more information.                                                   | FASTAnchor     |
+| `rel`            | public  | `string`            |         | See [`<a>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) for more information.                                                   | FASTAnchor     |
+| `target`         | public  | `AnchorTarget`      |         | See [`<a>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) for more information.                                                   | FASTAnchor     |
+| `type`           | public  | `string`            |         | See [`<a>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) for more information.                                                   | FASTAnchor     |
+| `control`        | public  | `HTMLAnchorElement` |         | References the root element                                                                                                                                               | FASTAnchor     |
 
 #### Attributes
 
@@ -164,6 +170,14 @@ This component is built with the expectation that focus is delegated to the anch
 | `rel`            | rel            | FASTAnchor     |
 | `target`         | target         | FASTAnchor     |
 | `type`           | type           | FASTAnchor     |
+
+<hr/>
+
+### Functions
+
+| Name               | Description                                               | Parameters         | Return                          |
+| ------------------ | --------------------------------------------------------- | ------------------ | ------------------------------- |
+| `isBreadcrumbItem` | Determines if the element is a (FASTBreadcrumbItem:class) | `element: Element` | `element is FASTBreadcrumbItem` |
 
 <hr/>
 
